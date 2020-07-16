@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://use.fontawesome.com/7a8cdda2b8.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <style>
+        body {
+            background-image: url("menu1.jpeg");
+            background-repeat: no-repeat;
+            background-position: 122px 26px;
+            /* width: 12px; */
+            background-size: 349px 540px;
+            position: relative;
+        }
+
+        /* .menutitle {
+            padding: 16px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #333;
+            color: white;
+
+        } */
+
+        .category div {
+
+            padding: 16px;
+            font-size: 22px;
+            /* border: 1px solid #ccbec0; */
+            color: white;
+            font-family: sans-serif;
+            letter-spacing: 2px;
+            font-size: bolder;
+         /* position: absolute; */
+         opacity: 70%;
+         } 
+         .category{
+             margin-top:180px;
+             margin-left: 16px;
+         }
+
+        /* .category div span {
+            font-weight: bold;
+            position: absolute;
+            top: 190px;
+            left: 45px;
+            padding-top:50px;
+        } */
+
+        
+
+        .search {
+            padding: 16px;
+            background-color: #333;
+            position: relative;
+
+        }
+
+        .search input[type=text] {
+            padding-right: 510px;
+            /* padding-bottom: 16px; */
+        }
+
+        i {
+            color: gray;
+            position: absolute;
+            font-size: 25px;
+            left: 400px;
+            top: 45px;
+        }
+
+        .entrees {
+            margin: -4px 4px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .foods {
+            padding: 12px;
+        }
+
+        .foods #foodcards {
+        
+            border: 1px solid #cabdbd;
+            border-left: none;
+            border-right:none;
+            padding: 12px;
+            margin-bottom: 2px;
+            position: relative;
+            /* width: 600px; */
+        }
+
+        #foodcards .foodname {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #foodcards .foodprice {
+            position: absolute;
+            left: 532px;
+            bottom: 50px;
+            /* background-color: white; */
+            color: red;
+            /* border-radius: 5px; */
+            padding: 3px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #foodcards .foodorder {
+            position: absolute;
+
+
+            background-color: #cc0b0b;
+            color: wheat;
+            border-radius: 5px;
+            padding: 3px;
+            margin: -20px;
+        }
+
+        .btn {
+            padding: 6px;
+            margin-left: 630px;
+            margin-top: -27px;
+
+        }
+
+      .resetbtn,  .backbtn{
+            padding: 6px;
+            margin-left: 500px;
+            /* margin-top: -45px; */
+            background-color: #333;
+            color: white;
+            letter-spacing: 1px;
+            line-height: 31px;
+            font-weight: bold;
+            text-decoration: none;
+            border: 3px solid #333;
+            width: 250px;
+            height: 50px;
+
+        }
+
+        .wrapper {
+            /* position: fixed;
+            top: 50%;
+            left: 50%; */
+            transform: translate(-50%, -50%);
+        }
+
+        .link_wrapper {
+            position: relative;
+        }
+
+        a {
+            display: block;
+            width: 250px;
+            height: 50px;
+            line-height: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            background: #333;
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid #333;
+            transition: all .35s;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            position: absolute;
+            transform: rotate(45deg);
+            right: 0;
+            top: 0;
+            z-index: -1;
+            transition: all .35s;
+        }
+
+        .icon svg {
+            width: 30px;
+            position: absolute;
+            top: calc(50% - 15px);
+            left: calc(50% - 15px);
+            transform: rotate(-45deg);
+            fill: rgb(19, 18, 18);
+            transition: all .35s;
+        }
+
+        a:hover {
+            width: 200px;
+            border: 3px solid black;
+            background: transparent;
+            color: black;
+        }
+
+        a:hover+.icon {
+            border: 3px solid solid;
+            right: -25%;
+        }
+
+        .btnadd {
+            background-color: #333;
+            color: white;
+            ;
+            /* border: 2px solid #555555; */
+            float: right;
+            margin-right: -130px;
+            position: absolute;
+            top: 47px;
+            left: 519px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btnadd:hover {
+            background-color: #555555;
+            color: white;
+        }
+
+        #features {
+            padding-top: 100px;
+        }
+
+        #features ul {
+            padding: 0;
+        }
+
+        #features li {
+            list-style-type: none;
+            float: left;
+            width: 23%;
+            margin: 1%;
+        }
+
+        #features li img {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #features li a {
+            text-decoration: none;
+            float: left;
+            color: #333;
+        }
+
+        #features li span {
+            float: right;
+        }
+
+        #features ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        footer {
+            background-color: #3b3b3b;
+            padding: 30px 0;
+            margin-top: 100px;
+        }
+
+        footer :after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        footer ul {
+            float: left;
+            padding: 0;
+            list-style-type: none;
+            width: 23%;
+            margin-right: 2%;
+            color: #eee;
+        }
+
+        footer li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<script>
+    var menuitems = getMenuFromLocalStorage();
+
+    function getMenuFromLocalStorage() {
+        var menuLocaStorage = localStorage.getItem('menus');
+        if (!menuLocaStorage) {
+            return [];
+        }
+        return JSON.parse(menuLocaStorage);
+    }
+</script>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="menutitle" style="margin-top: 30px;">
+                    <!-- <span>OUR MENU <i class='fas fa-hamburger' -->
+                    <!-- style="font-size:40px;color:brown;padding-left: 15px;"></i></span> -->
+                </div>
+                <div class="category" id="category">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-8">
+
+                <div class="row">
+                    <div class="search" style="margin:30px 0;"> <input type="text" placeholder="search our menu"> </div>
+                    <!-- <i class='fas fa-search' class="searchicon"></i> -->
+                </div>
+                <div class="row">
+                    <div class="entrees" class="col-sm-"><span>ITEMS</span></div>
+                </div>
+                <div class="row">
+                    <div style="overflow-y:scroll; height:400px;">
+
+                        <div class="foods" class="col-sm-12"></div>
+                    </div>
+                </div>
+                <div id="cart" style="display: none;">
+                    <table border="1px">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>qty</th>
+                                <th>price</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+
+                        </tbody>
+                    </table>
+                    <h4> total:<span id="total">0</span></h4>
+                    <!-- <br> <button onclick="closeCart()"> close </button> -->
+                </div>
+                <br>
+                <!-- <button onclick="showCart()">show cart</button> -->
+                <button onclick="reset()" class="resetbtn">RESET ORDER</button>
+                <!-- <button  class="backbtn"><a href="home.html"></a></button> -->
+            </div>
+            <!-- <button class="btn"></button> -->
+
+
+            <div class="btn">
+                <div class="wrapper">
+                    <div class="link_wrapper">
+                        <a href="invoice.html"> ORDER CONFIRM</a>
+
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                                <path
+                                    d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        var cat = "";
+        var foods = $(".foods");
+        var categoriesDiv = document.getElementById('category');
+        $(document).ready(function () {
+            showCategories();
+            showFoods();
+            refreshCart();
+        });
+
+        function showCategories() {
+            var menus = getMenuFromLocalStorage();
+            console.log(menus);
+            var categories = [];
+            for (var i = 0; i < menus.length; i++) {
+                var item = menus[i];
+                const found = categories.find(function (c) {
+                    return c == item.category;
+                });
+
+                if (!found) {
+                    categories.push(item.category);
+                    var c = item.category.toUpperCase();
+                    categoriesDiv.innerHTML += `<div onclick="filterByCategory(event)"><span>${c}</span></div>`;
+                }
+            }
+        }
+
+
+        function filterByCategory(e) {
+            cat = e.target.textContent.toLocaleLowerCase().trim();
+            showFoods();
+        }
+
+        function getItems() {
+            if (!cat) {
+                return menuitems; // show all menu 
+            }
+            return menuitems.filter(function (m) {
+                return m.category == cat;
+            });
+
+        }
+
+        function getImageName(name) {
+            if (name.indexOf('coffee') > -1) {
+                return 'cof1.jpeg';
+            }
+
+            if (name.indexOf('cake') > -1) {
+                return 'cake1.jpeg';
+            }
+
+            return 'piz2.jpeg';
+        }
+
+        function showFoods() {
+
+            var items = getItems();
+            foods.empty();
+            for (let i = 0; i < items.length; i++) {
+                var img = getImageName(items[i].name);
+                var name = items[i].name;
+                var detail = items[i].detail;
+                var price = items[i].price;
+                var order = items[i].order;
+                var id = items[i].id;
+                var txt = `<div class="row" id="foodcards">
+                <div class="col-sm-2"> 
+                <img src="images/${img}" class="img-fluid" style="padding-top:12px">
+
+
+                </div>
+
+                <div class="col-sm-8">
+                <div class="foodname">${name}</div> 
+                <div class="fooddetail" >${detail}</div>
+                <div class="foodprice"><span>$</span>${price}</div>
+                <button data-orderid="${id}" onclick="addtoCart(event)" class="btnadd">ORDER</button>
+                </div>
+                </div>`;
+                foods.append(txt);
+            }
+        }
+        function addtoCart(e) {
+            var id = e.target.dataset.orderid;
+            var item = menuitems.find(function (i) {
+                return i.id == id;
+            });
+            var cartstore = getCartstore();
+            if (cartstore[id] == undefined) {
+                cartstore[id] = {
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    qty: 0,
+
+                }
+            }
+            console.log(cartstore);
+            cartstore[id].qty++;
+
+            localStorage.setItem("cart", JSON.stringify(cartstore));
+            refreshCart();
+
+        }
+        function getCartstore() {
+            var localstorecart = localStorage.getItem("cart");
+            localstorecart = localstorecart == null ? {} : JSON.parse(localstorecart);
+            return localstorecart;
+        }
+        function showCart() {
+            refreshCart();
+            $("#cart").show();
+
+        }
+        function closeCart() {
+            console.log("dfg");
+            $("#cart").hide();
+        }
+        function refreshCart() {
+            var tbody = document.getElementById("tbody");
+            tbody.innerHTML = "";
+            var cartstore = getCartstore();
+            var total = 0;
+
+            for (const id in cartstore) {
+                var row = tbody.insertRow(tbody.rows.length);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+
+                cell1.innerHTML = cartstore[id].name;
+                cell2.innerHTML = cartstore[id].qty;
+                cell3.innerHTML = cartstore[id].price;
+                total += cartstore[id].qty * cartstore[id].price;
+
+            }
+            $("#total").text(total);
+
+        }
+        function reset() {
+            localStorage.clear();
+            refreshCart();
+
+        }
+    </script>
+</body>
+
+</html>

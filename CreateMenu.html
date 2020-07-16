@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Admin</title>
+    <style>
+        body {
+            background-image: url("images/blacckimg.jpeg");
+            box-sizing: border-box;
+        }
+
+        .addfood {
+            padding: 20px;
+            margin-left: 45px;
+            font-size: 24px;
+            color: white;
+            font-family: monospace;
+            /* text-decoration: underline; */
+}
+
+        .menuform {
+            box-sizing: border-box;
+            border: 1px solid black;
+            float: left;
+            width: 40%;
+            margin-left: 30px;
+
+        }
+
+        .menuform input[type=text],
+        .menuform select,
+        .menuform textarea,
+        .menuform input[type=number] {
+            margin-top: 20px;
+            margin-left: 30px;
+            height: 40px;
+            width: 300px;
+
+        }
+
+        .menuform button,.menubtn {
+            margin-left: 30px;
+            margin-bottom: 20px;
+
+        }
+
+        .menuform button ,.menubtn{
+            border-radius: 4px;
+            background-color: white;
+            border: none;
+            color: black;
+            text-align: center;
+            font-size: 16px;
+            padding: 13px;
+            width: 100px;
+            transition: all 0.5s;
+            cursor: pointer;
+            letter-spacing: 1px;
+            /* margin: 5px; */
+        }
+
+        .menuform button span,.menubtn {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .menuform button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .menuform button:hover span {
+            padding-right: 25px;
+        }
+
+        .menuform button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .tablewrapper {
+            box-sizing: border-box;
+            color: white;
+            /* font-weight: bold; */
+            font-family: serif;
+            float: right;
+            width: 50%;
+            letter-spacing: 1px;
+            margin-right: 50px;
+        }
+
+
+
+        table thead {
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        table td{
+            font-size: 20px;
+            font-family: monospace;
+        }
+        table td span{
+            color:white;
+            font-size: 30px;
+            /* border:1px solid white; */
+            padding:5px;
+            margin-left: 20px;
+            
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="addfood"><span>ADD NEW ITEM TO MENU</span></div>
+    <div class="menuform">
+        <form id="form" action="#" onsubmit="addMenu(event)">
+            <input type="text" name="name" placeholder="Name">
+            <br><br>
+            <select name="category">
+                <option value="coffee" selected style="background-color: gainsboro;color:black;">Coffee</option>
+                <option value="pizza" style="background-color: gainsboro;color:black;">Pizza</option>
+                <!-- <option value="cake" style="background-color: gainsboro;color:black;">Cake</option> -->
+            </select>
+            <br><br>
+            <textarea name="detail" cols="30" rows="3" placeholder="Description"></textarea>
+            <br><br>
+            <input type="number" step="0.1" name="price" placeholder="Price">
+            <br><br>
+            <button><span>Submit</span></button>
+            <button class="menubtn"><a href="menu.html">To Menu</a></button>
+        </form>
+    </div>
+    <div class="tablewrapper">
+        <table class="table table-bordered table-hover" class="foodtable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>CATEGOEY</th>
+                    <th>PRICE</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+
+    </div>
+   
+    <script>
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function addMenu(e) {
+            e.preventDefault();
+            var fd = new FormData(document.getElementById('form'));
+            var data = {
+                name: fd.get('name'),
+                detail: fd.get('detail'),
+                category: fd.get('category'),
+                price: parseFloat(fd.get('price')),
+            }
+            addMenuToLocalStorage(data);
+            refreshTable();
+        }
+
+        function addMenuToLocalStorage(m) {
+            var menuLocaStorage = getMenuFromLocalStorage();
+            var menuName = m.name;
+            var categoryName = m.category;
+            var storedMenu = menuLocaStorage.find(function (i) {
+                return i.name == menuName & i.category == categoryName;
+            });
+
+            if (storedMenu) {
+                alert('Menu is already exists!!');
+                return;
+            }
+
+            var id = getRandomInt(1000000, 9999999);
+
+            storedMenu = {
+                id: id,
+                name: m.name,
+                category: m.category,
+                price: m.price,
+                detail: m.detail,
+            }
+
+            menuLocaStorage.push(storedMenu);
+            localStorage.setItem('menus', JSON.stringify(menuLocaStorage));
+
+            alert('Added : ' + JSON.stringify(menuLocaStorage));
+        }
+
+        function getMenuFromLocalStorage() {
+            var menuLocaStorage = localStorage.getItem('menus');
+            if (!menuLocaStorage) {
+                return [];
+            }
+
+            return JSON.parse(menuLocaStorage);
+        }
+
+        function onEditMenu(j) {
+            var menus = getMenuFromLocalStorage();
+            for (var i = 0; i < menus.length; i++) {
+                if (i == j) {
+                    var item = menus[i];
+                }
+            }
+        }
+
+        function onDeleteMenu(j) {
+            var menus = getMenuFromLocalStorage();
+            menus.splice(j, 1); // remove from array
+            localStorage.setItem('menus', JSON.stringify(menus));
+            refreshTable();
+        }
+
+        function refreshTable() {
+            var tbody = document.getElementById('tbody');
+            tbody.innerHTML = '';
+            var menuItems = getMenuFromLocalStorage();
+
+            for (var i = 0; i < menuItems.length; i++) {
+                var item = menuItems[i];
+                var editButton = document.createElement('span');
+                editButton.innerHTML = '<i class="fa fa-pencil-square-o">';
+                (function (i) {
+                    editButton.onclick = function () {
+                        onEditMenu(i);
+                    }
+                })(i);
+
+                var deleteButton = document.createElement('span');
+                deleteButton.innerHTML = '<i class="fa fa-trash">';
+                (function (i) {
+                    deleteButton.onclick = function () {
+                        onDeleteMenu(i);
+                    }
+                })(i);
+
+
+                console.log(item.id);
+                var row = tbody.insertRow(tbody.rows.length);
+                row.insertCell(0).innerHTML = item.id;
+                row.insertCell(1).innerHTML = item.name;
+                row.insertCell(2).innerHTML = item.category;
+                row.insertCell(3).innerHTML = item.price;
+
+                var actions = row.insertCell(4);
+                actions.append(editButton);
+                actions.append(deleteButton);
+            }
+        }
+
+        refreshTable();
+    </script>
+</body>
+
+</html>
